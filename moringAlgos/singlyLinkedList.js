@@ -45,6 +45,34 @@ class List
         return this;
     }
 
+
+    insertAtFront(data) {
+        if (!this.head) {
+            return -1;
+        }
+        let temp = new Node(data);
+        temp.next = this.head;
+        this.head = temp;
+    }
+
+    removeHead() {
+        let temp = this.head;
+        this.head = this.head.next;
+        temp.next = null;
+    }
+
+    average() {
+        let temp = this.head;
+        let sum = 0;
+        let ct = 0;
+        while (temp.next != null) {
+            sum += temp.value;
+            ct++;
+            temp = temp.next;
+        }
+        return sum / ct;
+    }
+
     print(){
         let result = "";
         let runner = this.head;
@@ -70,6 +98,7 @@ list.PushBack(test_data2);
 list.PushBack(test_data3);
 list.PushBackN(test_data4);
 list.print(list);
+console.log(list.average());
 
 
 // class Node{
