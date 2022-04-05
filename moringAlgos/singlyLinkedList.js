@@ -70,3 +70,100 @@ list.PushBack(test_data2);
 list.PushBack(test_data3);
 list.PushBackN(test_data4);
 list.print(list);
+
+
+// class Node{
+//     constructor(data){
+//         this.data = data;
+//         this.next = null;
+//     }
+// }
+
+
+// class singlyLinkedList{
+//     constructor(){
+//         this.head = null;
+//     }
+
+//     addToFront(data){
+//         let newNode = new Node(data);
+//         if(this.head === null){
+//             this.head = newNode;
+//             return;
+//         }
+//         newNode.next = this.head;
+//         this.head = newNode;
+//     }
+
+//     addToBack(data){
+//         if(this.head === null){
+//             this.addToFront(data);
+//             return;
+//         }
+//         let newNode = new Node(data);
+//         let runner = this.head;
+//         while(runner.next != null){
+//             runner = runner.next;
+//         }
+//         runner.next = newNode;
+//     }
+
+//     addToBackN(arr){
+//         let i = 0;
+//         if(this.head === null){
+//             this.head = new Node(arr[i]);
+//             i++;
+//         }
+//         let runner = this.head;
+//         while(runner.next != null){
+//             runner = runner.next;
+//         }
+
+//         while(i < arr.length){
+//             let newNode = new Node(arr[i]);
+//             runner.next = newNode;
+//             runner = runner.next;
+//             i++;
+//         }
+//     }
+
+//     removeFromFront(){
+//         if(this.head === null){
+//             return;
+//         }
+//         this.head = this.head.next;
+//     }
+
+//     toString(){
+//         if(this.head === null) return;
+//         console.log("Running toString: ");
+//         let myStr = "";
+//         let runner = this.head;
+//         while(runner !== null){
+//             myStr += runner.data + " -> ";
+//             runner = runner.next;
+//         }
+//         console.log(myStr + " null");
+//     }
+
+//     isEmpty(){
+//         if(this.head === null){
+//             return true;
+//         }
+//         return false;
+//     }
+
+// }
+
+// let mySll = new singlyLinkedList();
+// mySll.toString();
+// console.log(mySll.isEmpty());
+// mySll.addToFront(32);
+// // mySll.addToFront(64);
+// // mySll.addToFront(128);
+// // mySll.addToFront(256);
+// mySll.addToBack(512);
+// console.log(mySll.isEmpty());
+// mySll.addToBackN([111,222,333,444,555]);
+// // mySll.removeFromFront();
+// mySll.toString();
