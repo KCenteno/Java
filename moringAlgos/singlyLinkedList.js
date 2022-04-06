@@ -2,7 +2,7 @@ class Node
 {
     constructor(value)
     {
-        this.next=undefined;
+        this.next=null;
         this.value=value;
     }
 };
@@ -11,14 +11,14 @@ class List
 {
     constructor()
     {
-        this.head=undefined;
+        this.head=null;
     }
 
     /* Determine whether the list is empty. */
     IsEmpty()
     {
-        if( this.head === null){
-            console.log("Wheres the node?")
+        if( this.head == this.tail && this.head == null){
+            return true
         }
     }
 
@@ -73,6 +73,68 @@ class List
         return sum / ct;
     }
 
+    removeBack() {
+        if (this.isEmpty()) {
+            return null;
+        }
+
+        // Only 1 node.
+        if (this.head.next === null) {
+            return this.removeHead();
+        }
+
+        // More than 1 node.
+        let runner = this.head;
+
+        while (runner.next.next) {
+            runner = runner.next;
+        }
+
+        // after while loop finishes, runner is now at 2nd to last node
+        const removedData = runner.next.data;
+        runner.next = null; // remove it from list
+        return removedData;
+    }
+
+    contains(val) {
+        var runner=this.head
+        while(runner){
+            if ( runner.value === val){
+            console.log("True")
+            return true
+            }
+            runner = runner.next;
+        }
+            console.log ("False")
+            return false
+    }
+
+    containsRecursive(val, current = this.head) {
+        if (current === null) {
+            return false;
+        }
+        if (current.data === val) {
+            return true;
+        }
+        return this.containsRecursive(val, current.next);
+    }
+
+    recursiveMax(runner = this.head, maxNode = this.head) {
+        if (this.head === null) {
+            return null;
+        }
+
+        if (runner === null) {
+            return maxNode.data;
+        }
+
+        if (runner.data > maxNode.data) {
+            maxNode = runner;
+        }
+
+        return this.recursiveMax(runner.next, maxNode);
+    }
+
     print(){
         let result = "";
         let runner = this.head;
@@ -97,8 +159,28 @@ list.PushBack(test_data1);
 list.PushBack(test_data2);
 list.PushBack(test_data3);
 list.PushBackN(test_data4);
+// console.log(list.average());
+// list.contains(321);
+list.removeBack();
 list.print(list);
-console.log(list.average());
+
+
+
+
+
+ 
+//  // EXTRA
+//  /**
+//   * Recursively finds the maximum integer data of the nodes in this list.
+//   * - Time: O(?).
+//   * - Space: O(?).
+//   * @param {ListNode} runner The start or current node during traversal, or null
+//   *    when the end of the list is reached.
+//   * @param {ListNode} maxNode Keeps track of the node that contains the current
+//   *    max integer as it's data.
+//   * @returns {?number} The max int or null if none.
+//   */
+//  recursiveMax(runner = this.head, maxNode = this.head) {}
 
 
 // class Node{
