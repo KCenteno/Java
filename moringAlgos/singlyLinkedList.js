@@ -74,7 +74,7 @@ class List
     }
 
     removeBack() {
-        if (this.isEmpty()) {
+        if (this.IsEmpty()) {
             return null;
         }
 
@@ -135,6 +135,126 @@ class List
         return this.recursiveMax(runner.next, maxNode);
     }
 
+    secondToLast() {
+        if (this.head == null || this.head.next == null) {
+            console.log("List is too short! Cannot return second to last!");
+            // return 'this' to end function and allow chaining of methods
+            return this;
+        }
+        var runner = this.head;
+        while (runner.next.next != null) {
+            runner = runner.next;
+        }
+        return runner.value;
+    }
+
+    removeVal(val) {
+        if (this.IsEmpty()) {
+            return null;
+        }
+        let runner = this.head;
+        while(runner.next) {
+            if(runner.next.value === val){
+                runner.next = runner.next.next
+            }
+            runner = runner.next;
+        }
+        return this.head
+    }
+
+
+    prepend(newVal, targetVal) {
+        let newNode = new Node(newVal)
+        if(this.head==null){
+            this.head == newNode
+            return;
+        }
+        if (targetVal == 0) {
+            this.addToFront(newVal)
+        }
+        var count = 0;
+        var runner = this.head;
+        while(runner) {
+            if (count == targetVal-1) {
+                newNode.next = runner.next
+                runner.next = newNode
+                return this;
+            }
+            runner = runner.next
+            count++;
+        }
+        return false;
+    }
+
+    concat(addList) {
+        let runner = this.head;
+
+        if (runner === null) {
+            this.head = addList.head;
+        } else {
+            while (runner.next) {
+                runner = runner.next;
+            }
+            runner.next = addList.head;
+        }
+        return this;
+    }
+
+    moveMinToFront() {
+        if (this.isEmpty()) {
+            return this;
+        }
+
+        let minNode = this.head;
+        let runner = this.head;
+        let prev = this.head;
+
+        // Todo refactor to while runner.next
+        while (runner.next) {
+            if (runner.next.data < minNode.data) {
+                prev = runner;
+                minNode = runner.next;
+            }
+
+            runner = runner.next;
+        }
+
+        if (minNode === this.head) {
+            return this;
+        }
+
+        prev.next = minNode.next;
+        minNode.next = this.head;
+        this.head = minNode;
+        return this;
+    }
+
+    splitOnVal(val) {
+        const newList = new SinglyLinkedList();
+
+        if (!this.head) {
+            return newList;
+        }
+
+        if (this.head.data === val) {
+            newList.head = this.head;
+            this.head = null;
+            return newList;
+        }
+
+        let runner = this.head;
+
+        while (runner.next) {
+            if (runner.next.data === val) {
+                newList.head = runner.next;
+                runner.next = null;
+                return newList;
+            }
+            runner = runner.next;
+        }
+        return newList;
+    }
+
     print(){
         let result = "";
         let runner = this.head;
@@ -161,120 +281,8 @@ list.PushBack(test_data3);
 list.PushBackN(test_data4);
 // console.log(list.average());
 // list.contains(321);
-list.removeBack();
+// list.removeBack();
+// list.secondToLast();
+list.removeVal(345);
+// list.prepend(456, 5);
 list.print(list);
-
-
-
-
-
- 
-//  // EXTRA
-//  /**
-//   * Recursively finds the maximum integer data of the nodes in this list.
-//   * - Time: O(?).
-//   * - Space: O(?).
-//   * @param {ListNode} runner The start or current node during traversal, or null
-//   *    when the end of the list is reached.
-//   * @param {ListNode} maxNode Keeps track of the node that contains the current
-//   *    max integer as it's data.
-//   * @returns {?number} The max int or null if none.
-//   */
-//  recursiveMax(runner = this.head, maxNode = this.head) {}
-
-
-// class Node{
-//     constructor(data){
-//         this.data = data;
-//         this.next = null;
-//     }
-// }
-
-
-// class singlyLinkedList{
-//     constructor(){
-//         this.head = null;
-//     }
-
-//     addToFront(data){
-//         let newNode = new Node(data);
-//         if(this.head === null){
-//             this.head = newNode;
-//             return;
-//         }
-//         newNode.next = this.head;
-//         this.head = newNode;
-//     }
-
-//     addToBack(data){
-//         if(this.head === null){
-//             this.addToFront(data);
-//             return;
-//         }
-//         let newNode = new Node(data);
-//         let runner = this.head;
-//         while(runner.next != null){
-//             runner = runner.next;
-//         }
-//         runner.next = newNode;
-//     }
-
-//     addToBackN(arr){
-//         let i = 0;
-//         if(this.head === null){
-//             this.head = new Node(arr[i]);
-//             i++;
-//         }
-//         let runner = this.head;
-//         while(runner.next != null){
-//             runner = runner.next;
-//         }
-
-//         while(i < arr.length){
-//             let newNode = new Node(arr[i]);
-//             runner.next = newNode;
-//             runner = runner.next;
-//             i++;
-//         }
-//     }
-
-//     removeFromFront(){
-//         if(this.head === null){
-//             return;
-//         }
-//         this.head = this.head.next;
-//     }
-
-//     toString(){
-//         if(this.head === null) return;
-//         console.log("Running toString: ");
-//         let myStr = "";
-//         let runner = this.head;
-//         while(runner !== null){
-//             myStr += runner.data + " -> ";
-//             runner = runner.next;
-//         }
-//         console.log(myStr + " null");
-//     }
-
-//     isEmpty(){
-//         if(this.head === null){
-//             return true;
-//         }
-//         return false;
-//     }
-
-// }
-
-// let mySll = new singlyLinkedList();
-// mySll.toString();
-// console.log(mySll.isEmpty());
-// mySll.addToFront(32);
-// // mySll.addToFront(64);
-// // mySll.addToFront(128);
-// // mySll.addToFront(256);
-// mySll.addToBack(512);
-// console.log(mySll.isEmpty());
-// mySll.addToBackN([111,222,333,444,555]);
-// // mySll.removeFromFront();
-// mySll.toString();
