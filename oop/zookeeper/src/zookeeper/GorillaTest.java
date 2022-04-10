@@ -6,6 +6,7 @@ public class GorillaTest {
 		// TODO Auto-generated method stub
 
 		Gorilla bigBoss = new Gorilla();
+		Bat BossBat = new Bat();
 		
 		bigBoss.throwSomething();
 		bigBoss.throwSomething();
@@ -13,5 +14,13 @@ public class GorillaTest {
 		bigBoss.eatBananas();
 		bigBoss.eatBananas();
 		bigBoss.climb();
+		
+		BossBat.attackTown();
+		BossBat.attackTown();
+		BossBat.attackTown();
+		BossBat.eatHumans();
+		BossBat.eatHumans();
+		BossBat.fly();
+		BossBat.fly();
 	}
 }
