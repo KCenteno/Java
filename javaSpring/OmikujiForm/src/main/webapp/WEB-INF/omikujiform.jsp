@@ -22,32 +22,32 @@
 
 </head>
 <body>
-    <div class="container p-5 my-5 bg-dark text-white"> <!-- Beginning of Container -->
+    <div class="container p-5 my-3 bg-dark text-white text-center"> <!-- Beginning of Container -->
         <h1 class="text-center">Send an Omikuji!</h1>
         <form action="/processing" method="post">
           <div class="form-group">
             <label for="">Pick a number form 5 to 25</label>
-            <input type="number" name="num" class="form-control text-center">
+            <input type="number" name="num" class="form-control text-center my-3">
           </div>
           <div class="form-group">
             <label for="">Enter the name of any city:</label>
-            <input type="text" name="city" class="form-control text-center">
+            <input type="text" name="city" class="form-control text-center my-3">
           </div>
           <div class="form-group">
             <label for="">Enter the name of any real person</label>
-            <input type="text" name="person" class="form-control text-center">
+            <input type="text" name="person" class="form-control text-center my-3">
           </div>
           <div class="form-group">
             <label for="">Enter professional endeavor or hobby:</label>
-            <input type="text" name="hobby" class="form-control text-center">
+            <input type="text" name="hobby" class="form-control text-center my-3">
           </div>
           <div class="form-group">
             <label for="">Enter any type of living thing:</label>
-            <input type="text" name="living" class="form-control text-center">
+            <input type="text" name="living" class="form-control text-center my-3">
           </div>
           <div class="form-group">
             <label for="">Say something nice to someone:</label>
-            <textarea name="nice" cols="30" rows="10" class="form-control text-center"></textarea>
+            <textarea name="nice" cols="30" rows="10" class="form-control text-center my-3"></textarea>
           </div>
           <input type="submit" value="Submit" class="btn btn-success mt-3">
         </form>

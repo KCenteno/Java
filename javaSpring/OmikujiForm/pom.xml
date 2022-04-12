@@ -8,12 +8,12 @@
 		<version>2.6.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.practice.omikujiform</groupId>
-	<artifactId>OmikujiForm</artifactId>
+	<groupId>com.practice.hoppers</groupId>
+	<artifactId>hoppers</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>OmikujiForm</name>
-	<description>A OmikujiForm practice</description>
+	<name>hoppers</name>
+	<description>a hoppers practice</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
