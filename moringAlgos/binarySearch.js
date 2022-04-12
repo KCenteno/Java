@@ -196,6 +196,9 @@ class BinarySearchTree {
  *    startNode is the root or not.
  */
     range(startNode = this.root) {
+        if(startNode == null){
+            return false;
+        }
         let range =  fullTree.min(startNode.data) - fullTree.max(startNode.data);
         console.log(range.data)
         console.log(fullTree.min(startNode.data))
