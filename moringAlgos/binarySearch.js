@@ -143,6 +143,65 @@ class BinarySearchTree {
         return this.maxRecursive(current.right);
     }
 
+    /**
+ * Determines if this tree contains the given searchVal.
+ * @param {number} searchVal The number to search for in the node's data.
+ * @returns {boolean} Indicates if the searchVal was found.
+ */
+    contains(searchVal) {
+        if(current == null){
+            return false;
+        }
+        let runner = this.root
+        while(runner != null) {
+            if(searchVal == runner.data){
+                return true;
+            }
+            if(searchVal > runner.data){
+                runner = runner.right
+            }
+            else{
+                runner = runner.left
+            }
+        }
+        return false;
+    }
+
+/**
+ * Determines if this tree contains the given searchVal.
+ * @param {number} searchVal The number to search for in the node's data.
+ * @returns {boolean} Indicates if the searchVal was found.
+ */
+
+    containsRecursive(searchVal, current = this.root) {
+        if(current == null){
+            return false;
+        }
+            if(searchVal == current.data) {
+                return true;
+            }
+            if(searchVal > current.data) {
+                return this.containsRecursive(searchVal, current.right)
+            }
+            else if (searchVal < current.data) {
+                return this.containsRecursive(searchVal, current.left)
+            }
+        return false
+    }
+
+/**
+ * Calculates the range (max - min) from the given startNode.
+ * @param {Node} startNode The node to start from to calculate the range.
+ * @returns {number|null} The range of this tree or a sub tree depending on if the
+ *    startNode is the root or not.
+ */
+    range(startNode = this.root) {
+        let range =  fullTree.min(startNode.data) - fullTree.max(startNode.data);
+        console.log(range.data)
+        console.log(fullTree.min(startNode.data))
+        return range;
+    }
+
     // Logs this tree horizontally with the root on the left.
     print(node = this.root, spaceCnt = 0, spaceIncr = 10) {
         if (!node) {
@@ -221,9 +280,14 @@ fullTree.insert(31)
 fullTree.insert(44)
 fullTree.insert(66)
 fullTree.insert(90);
-fullTree.print()
-console.log(fullTree)
-console.log(fullTree.min())
-console.log(fullTree.max())
-console.log(fullTree.minRecursive())
-console.log(fullTree.maxRecursive())
+// fullTree.print()
+// console.log(fullTree)
+// console.log(fullTree.min())
+// console.log(fullTree.max())
+// console.log(fullTree.minRecursive())
+// console.log(fullTree.maxRecursive())
+// console.log(fullTree.contains(1))
+// console.log(fullTree.containsRecursive(1))
+// console.log(fullTree.containsRecursive(90))
+// console.log(fullTree.containsRecursive(4))
+console.log(fullTree.range())
