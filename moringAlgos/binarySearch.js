@@ -81,6 +81,35 @@ class BinarySearchTree {
         }
     }
 
+    insertRecursive(newVal, current = this.root) {
+        const node = new BSTNode(newVal)
+
+        if (this.isEmpty()) {
+            this.root = node
+            return this
+        }
+
+        if(newVal <= current.data) {
+            if(!current.left) {
+                current.left = node
+                return this
+            }
+
+            current = current.left
+
+        } else {
+            if (!current.right) {
+                current.right = node
+                return this
+            }
+            
+            current = current.right
+            
+        }
+
+        return this.insertRecursive(newVal, current)
+    }
+
     /**
      * Retrieves the smallest integer data from this tree.
      * - Time: O(?).
@@ -283,14 +312,16 @@ fullTree.insert(31)
 fullTree.insert(44)
 fullTree.insert(66)
 fullTree.insert(90);
+fullTree.insertRecursive(100);
+// console.log(fullTree.insertRecursive(100));
 // fullTree.print()
 // console.log(fullTree)
 // console.log(fullTree.min())
-// console.log(fullTree.max())
+console.log(fullTree.max())
 // console.log(fullTree.minRecursive())
 // console.log(fullTree.maxRecursive())
 // console.log(fullTree.contains(1))
 // console.log(fullTree.containsRecursive(1))
 // console.log(fullTree.containsRecursive(90))
 // console.log(fullTree.containsRecursive(4))
-console.log(fullTree.range())
+// console.log(fullTree.range())
