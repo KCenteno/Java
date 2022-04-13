@@ -22,7 +22,7 @@
 
 </head>
 <body>
-    <div class="container"> <!-- Beginning of Container -->
+    <div class="container text-center"> <!-- Beginning of Container -->
         <h1>Fruit Store</h1>
         	<table class="table">
         		<tbody>
