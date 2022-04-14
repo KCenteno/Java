@@ -218,6 +218,67 @@ class BinarySearchTree {
         return false
     }
 
+    /**
+ * DFS Preorder: (CurrNode, Left, Right)
+ * Converts this BST into an array following Depth First Search preorder.
+ * Example on the fullTree var:
+ * [25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90]
+ * @param {Node} node The current node during the traversal of this tree.
+ * @param {Array<number>} vals The data that has been visited so far.
+ * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
+ */
+    toArrPreOrder(node = this.root, vals = []){
+        if(node == null){
+            return;
+        }
+
+        vals.push(node.data);
+        this.toArrPreOrder(node.left, vals);
+        this.toArrPreOrder(node.right, vals);
+        return vals;
+    }
+
+/**
+ * DFS Inorder: (Left, CurrNode, Right)
+ * Converts this BST into an array following Depth First Search inorder.
+ * See debugger call stack to help understand the recursion.
+ * Example on the fullTree var:
+ * [4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90]
+ * @param {Node} node The current node during the traversal of this tree.
+ * @param {Array<number>} vals The data that has been visited so far.
+ * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
+ */
+    toArrInorder(node = this.root, vals = []) {
+        if(node == null){
+            return;
+        }
+
+    this.toArrInOrder(node.left, vals);
+    vals.push(node.data);
+    this.toArrInOrder(node.right, vals);
+    return vals;
+}
+
+/**
+ * DFS Postorder (Left, Right, CurrNode)
+ * Converts this BST into an array following Depth First Search postorder.
+ * Example on the fullTree var:
+ * [4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25]
+ * @param {Node} node The current node during the traversal of this tree.
+ * @param {Array<number>} vals The data that has been visited so far.
+ * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
+ */
+    toArrPostOrder(node = this.root, vals = []){
+    if(node == null){
+        return;
+    }
+
+    this.toArrPostOrder(node.left, vals);
+    this.toArrPostOrder(node.right, vals);
+    vals.push(node.data);
+    return vals;
+}
+
 /**
  * Calculates the range (max - min) from the given startNode.
  * @param {Node} startNode The node to start from to calculate the range.
@@ -228,10 +289,16 @@ class BinarySearchTree {
         if(startNode == null){
             return false;
         }
-        let range =  fullTree.min(startNode.data) - fullTree.max(startNode.data);
-        console.log(range.data)
-        console.log(fullTree.min(startNode.data))
-        return range;
+        let leftRunner = startNode;
+        let rightRunner = startNode;
+        while(leftRunner.left != null){
+            leftRunner = leftRunner.left
+        }
+        while(rightRunner.right != null){
+            rightRunner = rightRunner.right;
+        }
+
+        return rightRunner.data - leftRunner.data;
     }
 
     // Logs this tree horizontally with the root on the left.
