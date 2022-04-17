@@ -24,42 +24,36 @@
 <body>
     <div class="container p-5 my-3 bg-dark text-white text-center"> <!-- Beginning of Container -->
  		
- 		<h1>lets make a new Candy!</h1>
-    <form:form action="/processCandy" method="post" modelAttribute="candy">
+ 		<h1>Update The Plan</h1>
+ 		
+ 		
+ 		<form:form action="/updatingPlan/${travelPlan.id}" method="post" modelAttribute="travelPlan">
+ 		<input type="hidden" name="_method" value="put">
       <p>
-          <form:label path="name">Name</form:label>
-          <form:input path="name"/>
-          <form:errors class="alert-danger" path="name" />
+          <form:label path="expense">Expense</form:label>
+          <form:input path="expense"/>
+          <form:errors class="alert-danger" path="expense" />
       </p>
       <p>
-          <form:label path="brand">Brand</form:label>
-          <form:input path="brand"/>
-          <form:errors class="alert-danger" path="brand"/>
+          <form:label path="vendor">Vendor</form:label>
+          <form:input path="vendor"/>
+          <form:errors class="alert-danger" path="vendor"/>
       </p>
       <p>
-          <form:label path="price">Price</form:label>
-          <form:input type="number" step="0.01" path="price"/>
-          <form:errors class="alert-danger" path="price" />
+          <form:label path="amount">Amount</form:label>
+          <form:input type="number" step="0.01" path="amount"/>
+          <form:errors class="alert-danger" path="amount" />
       </p>
       <p>
-          <form:label path="rating">Rating</form:label>
-          <form:input type="number" path="rating"/>
-          <form:errors class="alert-danger" path="rating"/>
+          <form:label path="description">Description</form:label>
+          <form:input type="text" path="description"/>
+          <form:errors class="alert-danger" path="description"/>
       </p>
-      
-      <form:select path="owner">
-      	<c:forEach var="i" items="${allOwners}">
-     		<form:option value="${i.id}">${i.firstName} ${i.lastName}</form:option>
-      	</c:forEach>
-	  </form:select>
-	  
       <br />
       <br />
       <input type="submit" value="Submit"/>
-    </form:form>
+  	</form:form>
  		
- 		<a href="/dashboard">Dashboard</a>
-
  		
     </div> <!-- End of Container -->
 </body>
