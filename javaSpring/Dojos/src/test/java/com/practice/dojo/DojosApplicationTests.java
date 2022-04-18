@@ -1,10 +1,10 @@
-package com.practice.booksapi;
+package com.practice.dojo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BooksapiApplicationTests {
+class DojosApplicationTests {
 
 	@Test
 	void contextLoads() {

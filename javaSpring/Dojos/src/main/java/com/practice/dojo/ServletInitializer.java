@@ -1,4 +1,4 @@
-package com.practice.booksapi;
+package com.practice.dojo;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(BooksapiApplication.class);
+		return application.sources(DojosApplication.class);
 	}
 
 }

@@ -8,12 +8,12 @@
 		<version>2.6.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.practice.booksapi</groupId>
-	<artifactId>booksapi</artifactId>
+	<groupId>com.practice.dojo</groupId>
+	<artifactId>Dojos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>booksapi</name>
-	<description>A booksapi practice</description>
+	<name>Dojos</name>
+	<description>A Dojo practice</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

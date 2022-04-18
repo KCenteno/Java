@@ -1,13 +1,13 @@
-package com.practice.booksapi;
+package com.practice.dojo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BooksapiApplication {
+public class DojosApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BooksapiApplication.class, args);
+		SpringApplication.run(DojosApplication.class, args);
 	}
 
 }
