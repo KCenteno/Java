@@ -1,45 +1,40 @@
-class Node
-{
-    constructor(value)
-    {
-        this.next=null;
-        this.value=value;
+class Node {
+    constructor(value) {
+        this.next = null;
+        this.value = value;
     }
 };
 
-class List
-{
-    constructor()
-    {
-        this.head=null;
+class List {
+    constructor() {
+        this.head = null;
     }
 
     /* Determine whether the list is empty. */
-    IsEmpty()
-    {
-        if( this.head == this.tail && this.head == null){
+    IsEmpty() {
+        if (this.head == this.tail && this.head == null) {
             return true
         }
     }
 
     /* Insert a node with the given value to the end of the list */
-    PushBack(value){
-    var newNode = new Node(value);
-    if (!this.head) {
-        this.head = newNode;
-    } else {
-        var runner = this.head;
-        while (runner.next != null) {
-            runner = runner.next;
+    PushBack(value) {
+        var newNode = new Node(value);
+        if (!this.head) {
+            this.head = newNode;
+        } else {
+            var runner = this.head;
+            while (runner.next != null) {
+                runner = runner.next;
+            }
+            runner.next = newNode;
         }
-        runner.next = newNode;
+        return this.head;
     }
-    return this.head;
-}
 
     /* Insert an array of nodes with the given values to the end of the list. */
     PushBackN(arr) {
-        for(let i = 0; i <arr.length; i++){
+        for (let i = 0; i < arr.length; i++) {
             this.PushBack(arr[i])
         }
         return this;
@@ -97,16 +92,16 @@ class List
     }
 
     contains(val) {
-        var runner=this.head
-        while(runner){
-            if ( runner.value === val){
-            console.log("True")
-            return true
+        var runner = this.head
+        while (runner) {
+            if (runner.value === val) {
+                console.log("True")
+                return true
             }
             runner = runner.next;
         }
-            console.log ("False")
-            return false
+        console.log("False")
+        return false
     }
 
     containsRecursive(val, current = this.head) {
@@ -153,8 +148,8 @@ class List
             return null;
         }
         let runner = this.head;
-        while(runner.next) {
-            if(runner.next.value === val){
+        while (runner.next) {
+            if (runner.next.value === val) {
                 runner.next = runner.next.next
             }
             runner = runner.next;
@@ -165,7 +160,7 @@ class List
 
     prepend(newVal, targetVal) {
         let newNode = new Node(newVal)
-        if(this.head==null){
+        if (this.head == null) {
             this.head == newNode
             return;
         }
@@ -174,8 +169,8 @@ class List
         }
         var count = 0;
         var runner = this.head;
-        while(runner) {
-            if (count == targetVal-1) {
+        while (runner) {
+            if (count == targetVal - 1) {
                 newNode.next = runner.next
                 runner.next = newNode
                 return this;
@@ -255,11 +250,95 @@ class List
         return newList;
     }
 
-    print(){
+    /**
+ * Reverses this list in-place without using any extra lists.
+ * @returns {SinglyLinkedList} This list.
+ */
+    reverse() {
+        var runner = this.head.next;
+        var walker = this.head;
+
+        if (this.head == null) {
+            return "empty";
+        }
+
+        while (runner != null) {
+            var temp = runner.next;
+            runner.next = walker;
+
+            walker = runner;
+            runner = temp;
+        }
+
+        this.head.next = null;
+        this.head = walker;
+    }
+
+    /**
+     * Determines whether the list has a loop in it which would result in
+     * infinitely traversing unless otherwise avoided. A loop is when a node's
+     * next points to a node that is behind it.
+     * @returns {boolean} Whether the list has a loop or not.
+     */
+    HasLoop() {
+        if (this.head == null) {
+            return false;
+        }
+
+        let runner = this.head;
+        let foundNodes = [];
+        while (runner) {
+            if (foundNodes.includes(runner)) {
+                return true;
+            }
+            else {
+                foundNodes.push(runner);
+                runner = runner.next;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Removes all the nodes that have a negative integer as their data.
+     * @returns {SinglyLinkedList} This list after the negatives are removed.
+     */
+    removeNegatives() {
+        var runner = this.head;
+        var walker = runner;
+        var temp;
+
+        //first value
+        if (this.head.value < 0) {
+            temp = this.head;
+            this.head = this.head.next;
+            temp.next = null;
+            return;
+        }
+
+        // middle number
+        while (runner.next != null) {
+            if (runner.value < 0) {
+                if (runner.next != null) {
+                    temp = walker;
+                    walker.next = runner.next;
+                }
+            }
+            walker = runner;
+            runner = runner.next;
+        }
+
+        // last value
+        if (runner.value < 0) {
+            walker.next = null;
+        }
+    }
+
+    print() {
         let result = "";
         let runner = this.head;
-        while(runner != null){
-            result += `${runner.value} 👉 ⇶✨`; 
+        while (runner != null) {
+            result += `${runner.value} 👉 ⇶✨`;
             runner = runner.next;
         }
         console.log(result.slice(0, result.length - 6));
@@ -267,15 +346,16 @@ class List
 
 };
 
-let test_data1=123;
-let test_data2=234;
-let test_data3=345;
-let test_data4=[111,222,333,444,555];
+let test_data1 = 123;
+let test_data2 = 234;
+let test_data3 = 345;
+let test_data4 = [111, 222, 333, 444, 555];
 
 /* Create our list */
-let list=new List();
+let list = new List();
 /* Insert nodes into the list: */
 list.PushBack(test_data1);
+list.PushBack(-192);
 list.PushBack(test_data2);
 list.PushBack(test_data3);
 list.PushBackN(test_data4);
@@ -283,6 +363,9 @@ list.PushBackN(test_data4);
 // list.contains(321);
 // list.removeBack();
 // list.secondToLast();
-list.removeVal(345);
+// list.removeVal(111);
 // list.prepend(456, 5);
+// list.reverse();
+list.HasLoop(list);
+// list.removeNegatives();
 list.print(list);
